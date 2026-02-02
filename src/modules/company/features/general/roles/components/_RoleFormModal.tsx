@@ -114,7 +114,11 @@ export function _RoleFormModal({
   const handlePermissionChange = (module: string, actionId: string, checked: boolean) => {
     setSelectedPermissions((prev) => {
       if (checked) {
+         const exists = prev.some(p => p.module === module && p.actionId === actionId);
+      if (!exists) {
         return [...prev, { module, actionId }];
+      }
+       return prev;
       }
       return prev.filter((p) => !(p.module === module && p.actionId === actionId));
     });
