@@ -14,7 +14,7 @@ const pool = new Pool({
 // ============================================
 // Usuario principal con email yordanpz+clerk_test@hotmail.com
 // Usado tanto para desarrollo como para tests de Cypress
-const OWNER_USER_ID = 'user_38XttXTm0XNDYKYMkyCUCgSnNjI';
+const OWNER_USER_ID = 'user_38ynF7pWZoKv2656xio53PsuMyB';
 
 // ============================================
 // CÓDIGOS ISO PARA PAÍSES (mapeo nombre -> código)

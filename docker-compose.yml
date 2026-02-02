@@ -25,14 +25,14 @@
 services:
   db:
     image: postgres:16-alpine
-    container_name: newproject-db
+    container_name: nahuel-db
     restart: "no"
     ports:
-      - '5432:5432'
+      - '5500:5432'
     environment:
-      POSTGRES_USER: ${POSTGRES_USER:-postgres}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
-      POSTGRES_DB: ${POSTGRES_DB:-newproject}
+      POSTGRES_USER: ${POSTGRES_USER:-nahuel}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-Nahuel1234}
+      POSTGRES_DB: ${POSTGRES_DB:-nahuel}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -43,19 +43,19 @@ services:
 
   minio:
     image: minio/minio:latest
-    container_name: newproject-minio
+    container_name: nahuel-minio
     profiles:
       - storage
     restart: "no"
     ports:
-      - '9000:9000'   # API S3
-      - '9001:9001'   # Console Web
+      - '9010:9000'   # API S3
+      - '9011:9001'   # Console Web
     environment:
       MINIO_ROOT_USER: ${MINIO_ROOT_USER:-minioadmin}
       MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-minioadmin123}
     volumes:
       - minio_data:/data
-    command: server /data --console-address ":9001"
+    command: server /data --console-address ":9011"
     healthcheck:
       test: ['CMD', 'mc', 'ready', 'local']
       interval: 5s
@@ -65,7 +65,7 @@ services:
   # Servicio para crear el bucket inicial automáticamente
   minio-init:
     image: minio/mc:latest
-    container_name: newproject-minio-init
+    container_name: nahuel-minio-init
     profiles:
       - storage
     depends_on:
